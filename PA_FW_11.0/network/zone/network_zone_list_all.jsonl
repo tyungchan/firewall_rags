@@ -1,5 +1,5 @@
 {
-  "id": "zone_network_list_all",
+  "id": "network_zone_list_all",
   "content": {
     "title": "List All Network Zones in PAN-OS (v11.0+)",
     "category": "Network Management → Zones",

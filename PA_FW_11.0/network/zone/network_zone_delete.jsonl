@@ -1,5 +1,5 @@
 {
-  "id": "zone_network_delete",
+  "id": "network_zone_delete",
   "content": {
     "title": "Delete Network Zone in PAN-OS (v11.0+)",
     "category": "Network Management → Zones",

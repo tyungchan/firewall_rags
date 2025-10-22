@@ -1,5 +1,5 @@
 {
-  "id": "zone_network_list_single",
+  "id": "network_zone_list_single",
   "content": {
     "title": "Get Single Network Zone in PAN-OS (v11.0+)",
     "category": "Network Management → Zones",

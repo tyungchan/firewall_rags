@@ -1,5 +1,5 @@
 {
-  "id": "address_object_create",
+  "id": "object_address_create",
   "content": {
     "title": "Create Address Object in PAN-OS (v11.0+)",
     "category": "Object Management → Address Objects",

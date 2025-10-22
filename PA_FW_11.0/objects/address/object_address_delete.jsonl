@@ -1,5 +1,5 @@
 {
-  "id": "address_object_delete",
+  "id": "object_address_delete",
   "content": {
     "title": "Delete Address Object in PAN-OS (v11.0+)",
     "category": "Object Management → Address Objects",

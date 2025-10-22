@@ -1,5 +1,5 @@
 {
-  "id": "security_policy_list",
+  "id": "policy_security_list",
   "content": {
     "title": "Get/List Security Rules in PAN-OS (v11.0+)",
     "category": "Policy Management → Security Rules",

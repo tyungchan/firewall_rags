@@ -1,5 +1,5 @@
 {
-  "id": "security_policy_rename",
+  "id": "policy_security_rename",
   "content": {
     "title": "Rename Security Rule in PAN-OS (v11.0+)",
     "category": "Policy Management → Security Rules",

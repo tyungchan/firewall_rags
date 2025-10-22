@@ -1,5 +1,5 @@
 {
-  "id": "security_policy_delete",
+  "id": "policy_security_delete",
   "content": {
     "title": "Delete Security Rule in PAN-OS (v11.0+)",
     "category": "Policy Management → Security Rules",

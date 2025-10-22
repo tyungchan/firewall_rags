@@ -1,5 +1,5 @@
 {
-  "id": "address_object_update",
+  "id": "object_address_update",
   "content": {
     "title": "Update (Edit) Address Object in PAN-OS (v11.0+)",
     "category": "Object Management → Address Objects",

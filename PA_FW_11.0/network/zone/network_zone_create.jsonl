@@ -1,5 +1,5 @@
 {
-  "id": "zone_network_create",
+  "id": "network_zone_create",
   "content": {
     "title": "Create Network Zone in PAN-OS (v11.0+)",
     "category": "Network Management → Zones",

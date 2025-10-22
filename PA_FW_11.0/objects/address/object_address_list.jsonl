@@ -1,5 +1,5 @@
 {
-  "id": "address_object_list",
+  "id": "object_address_list",
   "content": {
     "title": "Get/List Address Objects in PAN-OS (v11.0+)",
     "category": "Object Management → Address Objects",

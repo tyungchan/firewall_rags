@@ -1,5 +1,5 @@
 {
-  "id": "zone_network_update",
+  "id": "network_zone_update",
   "content": {
     "title": "Update Network Zone in PAN-OS (v11.0+)",
     "category": "Network Management → Zones",
