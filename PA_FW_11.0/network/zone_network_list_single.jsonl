@@ -1,0 +1,37 @@
+{
+  "id": "zone_network_list_single",
+  "content": {
+    "title": "Get Single Network Zone in PAN-OS (v11.0+)",
+    "category": "Network Management → Zones",
+    "api_endpoint": "GET /restapi/v11.0/network/zones?name=<zone-name>&location=<location>&vsys=<vsys>",
+    "summary": "Retrieves a specific network zone by name within a specified configuration scope such as 'vsys'. This endpoint returns detailed configuration data for the requested zone, including zone type, interfaces, and user identification settings.",
+    "required_query_parameters": {
+      "name": "The name of the zone to retrieve.",
+      "location": "Defines the configuration scope, such as 'vsys' or 'shared'.",
+      "vsys": "Required when location is 'vsys'. Example: vsys1."
+    },
+    "example_request": "curl -k -X GET 'https://174.92.110.3/restapi/v11.0/network/zones?name=dmz&location=vsys&vsys=vsys1' -H 'X-PAN-KEY: LUFRPT1hbUIvc1NrbnV4VEV1dlJLVDVuWWlDRi9vdXc9cml5NkFOSU9wOG5yTlZvUTVod3FGYWtvVXV0ajBWWkpoZXJKb2xFMzU3TllnS1RHNXpuUnFzd2IxZ2I5R1o0Sg=='",
+    "expected_success_response": "{\n  \"@code\": \"19\",\n  \"@status\": \"success\",\n  \"result\": {\n    \"entry\": {\n      \"@name\": \"dmz\",\n      \"network\": {\n        \"layer3\": {\n          \"member\": [\"ethernet1/3\"]\n        }\n      }\n    }\n  }\n}",
+    "common_errors": [
+      "400: Missing or invalid query parameters (name, location, or vsys)",
+      "403: Invalid or unauthorized API key",
+      "404: Zone not found in the specified scope"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "List All: GET /restapi/v11.0/network/zones",
+      "Create: POST /restapi/v11.0/network/zones",
+      "Update: PUT /restapi/v11.0/network/zones",
+      "Rename: POST /restapi/v11.0/network/zones:rename",
+      "Delete: DELETE /restapi/v11.0/network/zones"
+    ]
+  },
+  "metadata": {
+    "category": "Network Zones",
+    "operation": "Get Single",
+    "endpoint": "/restapi/v11.0/network/zones",
+    "method": "GET",
+    "panos_version": "11.0+",
+    "api_group": "Network Management"
+  }
+}

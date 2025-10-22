@@ -1,0 +1,51 @@
+{
+  "id": "zone_network_update",
+  "content": {
+    "title": "Update Network Zone in PAN-OS (v11.0+)",
+    "category": "Network Management → Zones",
+    "api_endpoint": "PUT /restapi/v11.0/network/zones?location=<location>&vsys=<vsys>&name=<zone-name>",
+    "summary": "Updates properties of an existing network zone in a specified scope such as 'vsys'. This may include modifying user identification settings or changing interface membership. The '@name' in the body must match the 'name' query parameter unless a rename is being performed separately.",
+    "required_query_parameters": {
+      "location": "Defines the configuration scope, such as 'vsys' or 'shared'.",
+      "vsys": "Required when location is 'vsys'. Example: vsys1.",
+      "name": "Specifies the zone being updated and should match @name inside the entry unless intentionally changed."
+    },
+    "request_body_format": {
+      "entry": {
+        "@name": "<zone-name>",
+        "enable-user-identification": "<yes | no>",
+        "network": {
+          "layer3": {
+            "member": [
+              "<interface-name>"
+            ]
+          }
+        }
+      }
+    },
+    "example_request": "curl -k -X PUT 'https://174.92.110.3/restapi/v11.0/network/zones?location=vsys&name=sdwan-branch1&vsys=vsys1' -H 'X-PAN-KEY: <your-api-key>' -d '{\"entry\": {\"@name\": \"sdwan-branch2\",\"enable-user-identification\": \"no\",\"network\": {\"layer3\": {\"member\": [\"ethernet1/2\"]}}}}'",
+    "expected_success_response": "{\n  \"@code\": \"20\",\n  \"@status\": \"success\",\n  \"msg\": \"command succeeded\"\n}",
+    "common_errors": [
+      "400: Missing or invalid query parameters (location, vsys, or name)",
+      "403: Invalid or unauthorized API key",
+      "404: Zone not found in the specified scope",
+      "409: Invalid interface reference or conflicting configuration"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "Rename: POST /restapi/v11.0/network/zones:rename",
+      "Delete: DELETE /restapi/v11.0/network/zones",
+      "Create: POST /restapi/v11.0/network/zones",
+      "List All: GET /restapi/v11.0/network/zones",
+      "Get Single: GET /restapi/v11.0/network/zones?name=<zone-name>"
+    ]
+  },
+  "metadata": {
+    "category": "Network Zones",
+    "operation": "Update",
+    "endpoint": "/restapi/v11.0/network/zones",
+    "method": "PUT",
+    "panos_version": "11.0+",
+    "api_group": "Network Management"
+  }
+}

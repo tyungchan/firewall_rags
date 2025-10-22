@@ -1,0 +1,50 @@
+{
+  "id": "zone_network_create",
+  "content": {
+    "title": "Create Network Zone in PAN-OS (v11.0+)",
+    "category": "Network Management → Zones",
+    "api_endpoint": "POST /restapi/v11.0/network/zones?location=<location>&vsys=<vsys>&name=<zone-name>",
+    "summary": "Creates a new network zone in a specified scope (such as 'vsys'). The zone must include a name and may define properties such as user identification and associated network interfaces or members.",
+    "required_query_parameters": {
+      "location": "Specifies the configuration scope, such as 'vsys' or 'shared'.",
+      "vsys": "Required if location is 'vsys'. Example: vsys1.",
+      "name": "The name of the zone being created. Must match @name in the body."
+    },
+    "request_body_format": {
+      "entry": {
+        "@name": "<zone-name>",
+        "enable-user-identification": "<yes | no>",
+        "network": {
+          "layer3": {
+            "member": [
+              "<interface-name>"
+            ]
+          }
+        }
+      }
+    },
+    "example_request": "curl -k -X POST 'https://174.92.110.3/restapi/v11.0/network/zones?location=vsys&name=branch2&vsys=vsys1' -H 'X-PAN-KEY: LUFRPT1hbUIvc1NrbnV4VEV1dlJLVDVuWWlDRi9vdXc9cml5NkFOSU9wOG5yTlZvUTVod3FGYWtvVXV0ajBWWkpoZXJKb2xFMzU3TllnS1RHNXpuUnFzd2IxZ2I5R1o0Sg==' -d '{"entry": {"@name": "branch2","enable-user-identification": "no","network": {"layer3": {"member": ["ethernet1/2"]}}}}'",
+    "expected_success_response": "{\n  \"@code\": \"19\",\n  \"@status\": \"success\",\n  \"msg\": \"command succeeded\"\n}",
+    "common_errors": [
+      "400: Missing or invalid query parameters (location, vsys, or name)",
+      "403: Invalid or unauthorized API key",
+      "409: A zone with the same name already exists in the specified scope"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "Update: PUT /restapi/v11.0/network/zones",
+      "Rename: POST /restapi/v11.0/network/zones:rename",
+      "Delete: DELETE /restapi/v11.0/network/zones",
+      "List All: GET /restapi/v11.0/network/zones",
+      "Get Single: GET /restapi/v11.0/network/zones?name=<zone-name>"
+    ]
+  },
+  "metadata": {
+    "category": "Network Zones",
+    "operation": "Create",
+    "endpoint": "/restapi/v11.0/network/zones",
+    "method": "POST",
+    "panos_version": "11.0+",
+    "api_group": "Network Management"
+  }
+}

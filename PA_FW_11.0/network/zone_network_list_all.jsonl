@@ -1,0 +1,36 @@
+{
+  "id": "zone_network_list_all",
+  "content": {
+    "title": "List All Network Zones in PAN-OS (v11.0+)",
+    "category": "Network Management → Zones",
+    "api_endpoint": "GET /restapi/v11.0/network/zones?location=<location>&vsys=<vsys>",
+    "summary": "Retrieves all configured network zones within a specified scope such as 'vsys'. The response returns the full zone configuration, including zone names, interface assignments, and network settings.",
+    "required_query_parameters": {
+      "location": "Defines the configuration scope, such as 'vsys' or 'shared'.",
+      "vsys": "Required when location is 'vsys'. Example: vsys1."
+    },
+    "example_request": "curl -k -X GET 'https://174.92.110.3/restapi/v11.0/network/zones?location=vsys&vsys=vsys1' -H 'X-PAN-KEY: LUFRPT1hbUIvc1NrbnV4VEV1dlJLVDVuWWlDRi9vdXc9cml5NkFOSU9wOG5yTlZvUTVod3FGYWtvVXV0ajBWWkpoZXJKb2xFMzU3TllnS1RHNXpuUnFzd2IxZ2I5R1o0Sg=='",
+    "expected_success_response": "{\n  \"@code\": \"19\",\n  \"@status\": \"success\",\n  \"result\": {\n    \"entry\": [\n      {\n        \"@name\": \"branch2\",\n        \"network\": {\n          \"layer3\": {\n            \"member\": [\"ethernet1/2\"]\n          }\n        }\n      }\n    ]\n  }\n}",
+    "common_errors": [
+      "400: Missing or invalid query parameters (location or vsys)",
+      "403: Invalid or unauthorized API key",
+      "500: Internal server error"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "Get Single: GET /restapi/v11.0/network/zones?name=<zone-name>",
+      "Create: POST /restapi/v11.0/network/zones",
+      "Update: PUT /restapi/v11.0/network/zones",
+      "Rename: POST /restapi/v11.0/network/zones:rename",
+      "Delete: DELETE /restapi/v11.0/network/zones"
+    ]
+  },
+  "metadata": {
+    "category": "Network Zones",
+    "operation": "List All",
+    "endpoint": "/restapi/v11.0/network/zones",
+    "method": "GET",
+    "panos_version": "11.0+",
+    "api_group": "Network Management"
+  }
+}
