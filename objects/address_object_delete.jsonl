@@ -1,0 +1,41 @@
+{
+  "id": "address_object_delete",
+  "content": {
+    "title": "Delete Address Object in PAN-OS (v11.0+)",
+    "category": "Object Management → Address Objects",
+    "api_endpoint": "DELETE /restapi/v11.0/Objects/Addresses?location=<location>&vsys=<vsys>&name=<object-name>",
+    "summary": "Deletes an existing address object from a specified location. This operation requires the name of the object and its configuration scope. The object cannot be deleted if it is currently referenced in security or NAT policies.",
+    "required_query_parameters": {
+      "location": "Scope of the object, such as shared, vsys, or device-group.",
+      "vsys": "Required if location is 'vsys'. Example: vsys1.",
+      "name": "Name of the address object to be deleted."
+    },
+    "example_request": "curl -k -X DELETE 'https://174.92.110.3/restapi/v11.0/Objects/Addresses?location=vsys&vsys=vsys1&name=web-servers-production' -H 'X-PAN-KEY: LUFRPT1hbUIvc1NrbnV4VEV1dlJLVDVuWWlDRi9vdXc9cml5NkFOSU9wOG5yTlZvUTVod3FGYWtvVXV0ajBWWkpoZXJKb2xFMzU3TllnS1RHNXpuUnFzd2IxZ2I5R1o0Sg=='",
+    "expected_success_response": {
+      "@code": "20",
+      "@status": "success",
+      "msg": "command succeeded"
+    },
+    "common_errors": [
+      "400: Missing or invalid query parameters",
+      "403: Invalid or unauthorized API key",
+      "404: Address object not found in the specified location",
+      "409: Object is referenced in one or more policies"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "Create: POST /restapi/v11.0/Objects/Addresses",
+      "Edit: PUT /restapi/v11.0/Objects/Addresses",
+      "Rename: POST /restapi/v11.0/Objects/Addresses:rename",
+      "List/Get: GET /restapi/v11.0/Objects/Addresses"
+    ]
+  },
+  "metadata": {
+    "category": "Address Objects",
+    "operation": "Delete",
+    "endpoint": "/restapi/v11.0/Objects/Addresses",
+    "method": "DELETE",
+    "panos_version": "11.0+",
+    "api_group": "Object Management"
+  }
+}

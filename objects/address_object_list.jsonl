@@ -1,0 +1,36 @@
+{
+  "id": "address_object_list",
+  "content": {
+    "title": "Get/List Address Objects in PAN-OS (v11.0+)",
+    "category": "Object Management → Address Objects",
+    "api_endpoint": "GET /restapi/v11.0/Objects/Addresses?location=<location>&vsys=<vsys>",
+    "summary": "Retrieves one or more address objects from a specified configuration location such as vsys or shared. If location is 'vsys', the 'vsys' parameter must be included. The response returns an array of objects with their corresponding attributes such as fqdn, ip-netmask, or ip-range.",
+    "required_query_parameters": {
+      "location": "Defines configuration scope, such as vsys or shared.",
+      "vsys": "Required when location is 'vsys'. Example: vsys1."
+    },
+    "example_request": "curl -k -X GET 'https://174.92.110.3/restapi/v11.0/Objects/Addresses?location=vsys&vsys=vsys1' -H 'X-PAN-KEY: LUFRPT1hbUIvc1NrbnV4VEV1dlJLVDVuWWlDRi9vdXc9cml5NkFOSU9wOG5yTlZvUTVod3FGYWtvVXV0ajBWWkpoZXJKb2xFMzU3TllnS1RHNXpuUnFzd2IxZ2I5R1o0Sg=='",
+    "example_response": "{\n  \"@code\": \"19\",\n  \"@status\": \"success\",\n  \"result\": {\n    \"@count\": \"3\",\n    \"@total-count\": \"3\",\n    \"entry\": [\n      {\n        \"@location\": \"vsys\",\n        \"@name\": \"fqdn1\",\n        \"@vsys\": \"vsys1\",\n        \"fqdn\": \"www.test.com\"\n      },\n      {\n        \"@location\": \"vsys\",\n        \"@name\": \"Peer1\",\n        \"@vsys\": \"vsys1\",\n        \"ip-netmask\": \"172.0.0.1/24\"\n      },\n      {\n        \"@location\": \"vsys\",\n        \"@name\": \"Peer2renamed\",\n        \"@oldname\": \"Peer2\",\n        \"@vsys\": \"vsys1\",\n        \"ip-netmask\": \"200.0.0.1/24\"\n      }\n    ]\n  }\n}",
+    "expected_output": "Returns a list of all matching address objects, including their name, type (FQDN, IP, or range), and optional attributes such as tags and descriptions.",
+    "common_errors": [
+      "400: Missing location or vsys parameter",
+      "403: Invalid or unauthorized API key",
+      "500: Unexpected server error"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "Create: POST /restapi/v11.0/Objects/Addresses",
+      "Edit: PUT /restapi/v11.0/Objects/Addresses",
+      "Rename: POST /restapi/v11.0/Objects/Addresses:rename",
+      "Delete: DELETE /restapi/v11.0/Objects/Addresses"
+    ]
+  },
+  "metadata": {
+    "category": "Address Objects",
+    "operation": "Get/List",
+    "endpoint": "/restapi/v11.0/Objects/Addresses",
+    "method": "GET",
+    "panos_version": "11.0+",
+    "api_group": "Object Management"
+  }
+}

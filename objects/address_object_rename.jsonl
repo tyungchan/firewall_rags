@@ -1,0 +1,42 @@
+{
+  "id": "address_object_rename",
+  "content": {
+    "title": "Rename Address Object in PAN-OS (v11.0+)",
+    "category": "Object Management → Address Objects",
+    "api_endpoint": "POST /restapi/v11.0/Objects/Addresses:rename?location=<location>&vsys=<vsys>&name=<current-name>&newname=<new-name>",
+    "summary": "Renames an existing address object by specifying the current name and the new desired name. Renaming is handled as a separate POST action using the :rename suffix and does not require a request body.",
+    "required_query_parameters": {
+      "location": "Defines the configuration scope such as shared or vsys.",
+      "vsys": "Required if location is 'vsys'. Example: vsys1.",
+      "name": "The current name of the address object.",
+      "newname": "The new name to apply to the object."
+    },
+    "example_request": "curl -k -X POST \"https://10.5.196.4/restapi/v11.0/Objects/Addresses:rename?location=shared&name=web-servers-production&newname=web-server-publish\" \\\n  -H \"X-PAN-KEY: ********\"",
+    "expected_success_response": {
+      "@code": "20",
+      "@status": "success",
+      "msg": "command succeeded"
+    },
+    "common_errors": [
+      "400: Missing or invalid query parameters",
+      "403: Insufficient privileges or invalid API key",
+      "404: Address object not found",
+      "409: An object with the new name already exists"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "Create: POST /restapi/v11.0/Objects/Addresses",
+      "Edit: PUT /restapi/v11.0/Objects/Addresses",
+      "Delete: DELETE /restapi/v11.0/Objects/Addresses",
+      "List/Get: GET /restapi/v11.0/Objects/Addresses"
+    ]
+  },
+  "metadata": {
+    "category": "Address Objects",
+    "operation": "Rename",
+    "endpoint": "/restapi/v11.0/Objects/Addresses:rename",
+    "method": "POST",
+    "panos_version": "11.0+",
+    "api_group": "Object Management"
+  }
+}

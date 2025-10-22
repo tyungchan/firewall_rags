@@ -1,0 +1,56 @@
+{
+  "id": "address_object_update",
+  "content": {
+    "title": "Update (Edit) Address Object in PAN-OS (v11.0+)",
+    "category": "Object Management → Address Objects",
+    "api_endpoint": "PUT /restapi/v11.0/Objects/Addresses?location=<location>&vsys=<vsys>&name=<object-name>",
+    "summary": "Updates an existing address object by modifying fields such as FQDN, IP address, description, or associated tags. The object name is defined via the query parameter, and the same name must be present in the @name field inside the entry.",
+    "required_query_parameters": {
+      "location": "The configuration scope, e.g., shared, vsys, or device-group.",
+      "vsys": "Required when location is 'vsys', e.g., vsys1.",
+      "name": "The current name of the address object to update."
+    },
+    "request_body_format": {
+      "entry": [
+        {
+          "@name": "<object-name>",
+          "fqdn | ip-netmask | ip-range": "<new-value>",
+          "description": "<optional>",
+          "tag": {
+            "member": [
+              "tag1",
+              "tag2"
+            ]
+          }
+        }
+      ]
+    },
+    "example_request": "curl -k -X PUT \"https://10.2.1.4/restapi/v11.0/Objects/Addresses?location=shared&name=web-servers-production\" \\\n  -H \"X-PAN-KEY: ********\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"entry\": [\n      {\n        \"@name\": \"web-servers-production\",\n        \"description\": \"publish servers\",\n        \"fqdn\": \"docs.paloaltonetworks.com\",\n        \"tag\": {\n          \"member\": [\n            \"blue\",\n            \"red\"\n          ]\n        }\n      }\n    ]\n  }'",
+    "expected_success_response": {
+      "@code": "20",
+      "@status": "success",
+      "msg": "command succeeded"
+    },
+    "common_errors": [
+      "400: Invalid field or malformed JSON body",
+      "403: Insufficient permissions or invalid API key",
+      "404: Address object not found",
+      "409: Invalid tag reference or attempt to reference a tag that does not exist"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "Create: POST /restapi/v11.0/Objects/Addresses",
+      "Rename: POST /restapi/v11.0/Objects/Addresses:rename",
+      "Delete: DELETE /restapi/v11.0/Objects/Addresses",
+      "Get/List: GET /restapi/v11.0/Objects/Addresses?location=<loc>&vsys=<vsys>"
+    ]
+  },
+  "metadata": {
+    "category": "Address Objects",
+    "operation": "Update",
+    "endpoint": "/restapi/v11.0/Objects/Addresses",
+    "method": "PUT",
+    "panos_version": "11.0+",
+    "api_group": "Object Management"
+  }
+}

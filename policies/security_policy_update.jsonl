@@ -1,0 +1,55 @@
+{
+  "id": "security_policy_update",
+  "content": {
+    "title": "Update Security Rule in PAN-OS (v11.0+)",
+    "category": "Policy Management → Security Rules",
+    "api_endpoint": "PUT /restapi/v11.0/Policies/SecurityRules?location=<location>&vsys=<vsys>&name=<rule-name>",
+    "summary": "Updates an existing security rule by modifying fields such as action, applications, source, destination, services, or other attributes. The '@name' field in the body must match the 'name' query parameter. This method does not change the rule name; renaming requires the :rename endpoint.",
+    "required_query_parameters": {
+      "location": "Defines the configuration scope, such as 'vsys' or 'shared'.",
+      "vsys": "Required if location is 'vsys'. Example: vsys1.",
+      "name": "Specifies the rule name being updated and must match @name in the entry."
+    },
+    "request_body_format": {
+      "entry": [
+        {
+          "@name": "<rule-name>",
+          "action": "<allow | deny | drop | reset-client | reset-server | reset-both>",
+          "application": { "member": ["<app1>", "<app2>"] },
+          "category": { "member": ["<category>"] },
+          "destination": { "member": ["<object>"] },
+          "from": { "member": ["<zone>"] },
+          "source-hip": { "member": ["<hip-profile>"] },
+          "destination-hip": { "member": ["<hip-profile>"] },
+          "service": { "member": ["<service-name>"] },
+          "source": { "member": ["<object>"] },
+          "source-user": { "member": ["<user>"] },
+          "to": { "member": ["<zone>"] }
+        }
+      ]
+    },
+    "example_request": "curl -k -X PUT 'https://174.92.110.3/restapi/v11.0/Policies/SecurityRules?location=vsys&name=rule-test-new1&vsys=vsys1' -H 'X-PAN-KEY: LUFRPT1hbUIvc1NrbnV4VEV1dlJLVDVuWWlDRi9vdXc9cml5NkFOSU9wOG5yTlZvUTVod3FGYWtvVXV0ajBWWkpoZXJKb2xFMzU3TllnS1RHNXpuUnFzd2IxZ2I5R1o0Sg==' -d '{"entry": [{"@location": "vsys","@name": "rule-test-new1","@vsys": "vsys1","action": "allow","application": {"member": ["gmail"]},"category": {"member": ["any"]},"destination": {"member": ["any"]},"from": {"member": ["any"]},"source-hip": {"member": ["any"]},"destination-hip": {"member": ["any"]},"service": {"member": ["any"]},"source": {"member": ["any"]},"source-user": {"member": ["any"]},"to": {"member": ["any"]}}]}'",
+    "expected_success_response": "{\n  \"@code\": \"20\",\n  \"@status\": \"success\",\n  \"msg\": \"command succeeded\"\n}",
+    "common_errors": [
+      "400: Missing or invalid query parameters (location, vsys, or name)",
+      "403: Invalid or unauthorized API key",
+      "404: Rule not found in the specified scope",
+      "409: Invalid application, service, or object reference"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "Create: POST /restapi/v11.0/Policies/SecurityRules",
+      "Rename: POST /restapi/v11.0/Policies/SecurityRules:rename",
+      "Delete: DELETE /restapi/v11.0/Policies/SecurityRules",
+      "List/Get: GET /restapi/v11.0/Policies/SecurityRules"
+    ]
+  },
+  "metadata": {
+    "category": "Security Rules",
+    "operation": "Update",
+    "endpoint": "/restapi/v11.0/Policies/SecurityRules",
+    "method": "PUT",
+    "panos_version": "11.0+",
+    "api_group": "Policy Management"
+  }
+}

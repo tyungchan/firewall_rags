@@ -1,0 +1,35 @@
+{
+  "id": "security_policy_list",
+  "content": {
+    "title": "Get/List Security Rules in PAN-OS (v11.0+)",
+    "category": "Policy Management → Security Rules",
+    "api_endpoint": "GET /restapi/v11.0/Policies/SecurityRules?location=<location>&vsys=<vsys>",
+    "summary": "Retrieves a list of security rules defined within a specified configuration scope such as a vsys. This endpoint returns rule details including name, action, source, destination, applications, services, and other metadata.",
+    "required_query_parameters": {
+      "location": "Specifies the configuration scope, such as 'vsys' or 'shared'.",
+      "vsys": "Required if location is 'vsys'. Example: vsys1."
+    },
+    "example_request": "curl -k -X GET 'https://174.92.110.3/restapi/v11.0/Policies/SecurityRules?location=vsys&vsys=vsys1' -H 'X-PAN-KEY: LUFRPT1hbUIvc1NrbnV4VEV1dlJLVDVuWWlDRi9vdXc9cml5NkFOSU9wOG5yTlZvUTVod3FGYWtvVXV0ajBWWkpoZXJKb2xFMzU3TllnS1RHNXpuUnFzd2IxZ2I5R1o0Sg=='",
+    "expected_success_response": "{\n  \"@code\": \"19\",\n  \"@status\": \"success\",\n  \"result\": {\n    \"entry\": [\n      {\n        \"@name\": \"rule-test1\",\n        \"action\": \"allow\",\n        \"source\": { \"member\": [ \"any\" ] },\n        \"destination\": { \"member\": [ \"any\" ] },\n        \"application\": { \"member\": [ \"any\" ] },\n        \"service\": { \"member\": [ \"any\" ] }\n      }\n    ]\n  }\n}",
+    "common_errors": [
+      "400: Missing or invalid query parameters (location or vsys)",
+      "403: Invalid or unauthorized API key",
+      "500: Internal server error or unexpected failure"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "Create: POST /restapi/v11.0/Policies/SecurityRules",
+      "Update: PUT /restapi/v11.0/Policies/SecurityRules",
+      "Rename: POST /restapi/v11.0/Policies/SecurityRules:rename",
+      "Delete: DELETE /restapi/v11.0/Policies/SecurityRules"
+    ]
+  },
+  "metadata": {
+    "category": "Security Rules",
+    "operation": "Get/List",
+    "endpoint": "/restapi/v11.0/Policies/SecurityRules",
+    "method": "GET",
+    "panos_version": "11.0+",
+    "api_group": "Policy Management"
+  }
+}

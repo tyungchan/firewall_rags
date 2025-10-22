@@ -1,0 +1,38 @@
+{
+  "id": "security_policy_rename",
+  "content": {
+    "title": "Rename Security Rule in PAN-OS (v11.0+)",
+    "category": "Policy Management → Security Rules",
+    "api_endpoint": "POST /restapi/v11.0/Policies/SecurityRules:rename?location=<location>&vsys=<vsys>&name=<current-rule-name>&newname=<new-rule-name>",
+    "summary": "Renames an existing security rule within a specified configuration scope such as 'vsys'. This action does not modify any rule logic or attributes, only the rule's name. It uses the :rename action suffix and does not require a request body.",
+    "required_query_parameters": {
+      "location": "Defines the configuration scope, such as 'vsys' or 'shared'.",
+      "vsys": "Required if location is 'vsys'. Example: vsys1.",
+      "name": "Specifies the current name of the security rule.",
+      "newname": "Specifies the new name to apply to the security rule."
+    },
+    "example_request": "curl -k -X POST 'https://174.92.110.3/restapi/v11.0/Policies/SecurityRules:rename?location=vsys&vsys=vsys1&name=rule-test1&newname=rule-test-new1' -H 'X-PAN-KEY: LUFRPT1hbUIvc1NrbnV4VEV1dlJLVDVuWWlDRi9vdXc9cml5NkFOSU9wOG5yTlZvUTVod3FGYWtvVXV0ajBWWkpoZXJKb2xFMzU3TllnS1RHNXpuUnFzd2IxZ2I5R1o0Sg=='",
+    "expected_success_response": "{\n  \"@code\": \"20\",\n  \"@status\": \"success\",\n  \"msg\": \"command succeeded\"\n}",
+    "common_errors": [
+      "400: Missing or invalid query parameters (location, vsys, name, or newname)",
+      "403: Invalid or unauthorized API key",
+      "404: Rule with the specified current name not found",
+      "409: A rule with the new name already exists"
+    ],
+    "version_support": "PAN-OS 11.0 and later (this format)",
+    "related_operations": [
+      "Create: POST /restapi/v11.0/Policies/SecurityRules",
+      "Update: PUT /restapi/v11.0/Policies/SecurityRules",
+      "Delete: DELETE /restapi/v11.0/Policies/SecurityRules",
+      "List/Get: GET /restapi/v11.0/Policies/SecurityRules"
+    ]
+  },
+  "metadata": {
+    "category": "Security Rules",
+    "operation": "Rename",
+    "endpoint": "/restapi/v11.0/Policies/SecurityRules:rename",
+    "method": "POST",
+    "panos_version": "11.0+",
+    "api_group": "Policy Management"
+  }
+}
